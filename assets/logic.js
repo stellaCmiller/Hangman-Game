@@ -1,24 +1,24 @@
 var alphabet = "abcdefghijklmnopqrstuvwxyz";
-var wordBank = ["succ ulent", "prickly pear", "dehyd ration", "oa sis", "rattle snake", "mir age"];
+var wordBank = ["succulent", "prickly pear", "dehydration", "oasis", "rattlesnake", "mirage", "pyramid", "outlaw", "gallows", "tumbleweeds", "sand dunes", "camel", "tarantula"]
 
 
 var secretWord = randomWord(wordBank);
 createGameSpace(secretWord);
 console.log(secretWord);
 
+//Returns a random word from the wordbank array passed into it
 function randomWord(bank){
     randomIndex = Math.floor(Math.random() * Math.floor(bank.length));
     return bank[randomIndex];
 }
 
+//Takes the secret word and represents it with underscores on the HTML page
 function createGameSpace(secretWord) {
-    let placeHolder = "_ ";
-    let spaceHolder = "     ";
     for (i=0; i<secretWord.length; i++){
-        if (secretWord[i] === " "){
-            document.getElementById("gameSpace").innerHTML += spaceHolder;
+        if (secretWord.charAt(i) === " "){
+            document.getElementById("gameSpace").textContent += "\xa0\xa0";
         } else {
-        document.getElementById("gameSpace").innerHTML += placeHolder;
+        document.getElementById("gameSpace").textContent += "_ ";
         }
     }
 }
@@ -26,8 +26,11 @@ function createGameSpace(secretWord) {
 document.onkeyup = function(event){
     var userGuess = event.key;
 
-    if (userGuess.includes(alphabet.toLowerCase)){
+    if (alphabet.includes(userGuess)){
         checkGuess() 
+    }
+    else {
+        alert("That is not a letter!")
     }
 }
 
