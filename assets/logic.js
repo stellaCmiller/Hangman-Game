@@ -26,7 +26,6 @@ function createGameSpace(secretWord) {
             secretWordCharArray.push("_");
         }
     }   
-    console.log(secretWordCharArray); //test function
     for (let character in secretWordCharArray){
         document.getElementById("gameSpace").textContent += secretWordCharArray[character] + "\xa0";
     }
@@ -60,13 +59,16 @@ function checkGuess(guess) {
     }
 }
 
+/*Updates the secret word character array and the underscore display whenever a user correctly guesses a letter */
 function replaceUnderscores(character){
     for (i=0; i<secretWord.length; i++){
         if (secretWord.charAt(i) == character){
             secretWordCharArray[i] = character;
-            console.log(secretWordCharArray);
         }
+    } 
+    let updatedGameSpace = "";
+    for (let character in secretWordCharArray){
+        updatedGameSpace += secretWordCharArray[character] + "\xa0";
+        document.getElementById("gameSpace").textContent = updatedGameSpace;
     }
-    // document.getElementById("gameSpace").textContent = secretUnderscores;
-    
 }
