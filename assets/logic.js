@@ -3,7 +3,7 @@ var wordBank = ["succulent", "prickly pear", "dehydration", "oasis", "rattlesnak
 
 
 var secretWord = randomWord(wordBank);
-var secretUnderscores = "";
+var secretWordCharArray = [];
 var guessedLetters = [];
 var numGuesses = 5;
 
@@ -17,16 +17,18 @@ function randomWord(bank){
     return bank[randomIndex];
 }
 
-/*Takes the secret word and represents it with underscores on the HTML page and also adds it to a String to be iterated over later in order to replace characters*/
+/*Takes the secret word, creates an underscore array representation of the word, and then prints it to the screen*/
 function createGameSpace(secretWord) {
-    for (i=0; i<secretWord.length; i++){
-        if (secretWord.charAt(i) === "\xa0"){
-            secretUnderscores += "\xa0\xa0";
-            document.getElementById("gameSpace").textContent += "\xa0\xa0";
+    for (let i=0; i<secretWord.length; i++){
+        if (secretWord.charAt(i) === " "){
+            secretWordCharArray.push("\xa0");
         } else {
-            secretUnderscores += "_";
-            document.getElementById("gameSpace").textContent += "_ ";
+            secretWordCharArray.push("_");
         }
+    }   
+    console.log(secretWordCharArray); //test function
+    for (let character in secretWordCharArray){
+        document.getElementById("gameSpace").textContent += secretWordCharArray[character] + "\xa0";
     }
 }
 
@@ -47,6 +49,8 @@ function checkGuess(guess) {
         alert("You have already guessed that letter");
     } else if (secretWord.includes(guess)){
         replaceUnderscores(guess);
+        guessedLetters.push(guess);
+        document.getElementById("guessedLetters").textContent += guess;
     } else {
         alert("lol you suck");
         numGuesses --;
@@ -59,9 +63,10 @@ function checkGuess(guess) {
 function replaceUnderscores(character){
     for (i=0; i<secretWord.length; i++){
         if (secretWord.charAt(i) == character){
-            secretUnderscores.charAt(i) = character;
+            secretWordCharArray[i] = character;
+            console.log(secretWordCharArray);
         }
     }
-    document.getElementById("gameSpace").textContent = secretUnderscores;
-    console.log(secretUnderscores);
+    // document.getElementById("gameSpace").textContent = secretUnderscores;
+    
 }
