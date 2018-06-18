@@ -1,3 +1,9 @@
+body {
+    background: url(/assets/images/SandDune.png);
+    background-repeat: repeat-x;
+
+}
+
 header {
     width: 100%;
     text-align: center;
