@@ -9,9 +9,15 @@ header {
     text-align: center;
 }
 
+button {
+    display: inline-block;
+    width: 10%;
+}
+
 section {
     max-width: 960px;
     margin: auto;
     text-align: center;
     background-color: skyblue;
+    opacity: .9;
 }

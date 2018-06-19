@@ -12,6 +12,9 @@
     <header>
         <h1>Welcome to Hangman!</h1>
         <h2>Select a difficulty level or begin playing at the default (medium) by pressing any key</h2>
+        <button type="button" id="easy" onclick="changeDifficultyEasy()">Easy</button>
+        <button type="button" id="medium" onclick="changeDifficultyMedium()">Medium</button>
+        <button type="button" id="hard" onclick="changeDifficultyHard()">Hard</button>
     </header>
     
     <section id="gameArea">
@@ -23,11 +26,14 @@
         <br>
         <p>Number of tries left: </p>
         <p id="lives">5</p>
-        <br>
         <h3>Number of wins: <span id="wins">0</span></h3>
         <h3>Number of losses: <span id="losses">0</span></h3>
     </section>
     
+    <!--Default Script-->
     <script src="/assets/game.js"></script>
+
+    <!--Object Script-->
+    <!-- <script src="/assets/GameObject.js"></script> -->
 </body>
 </html>

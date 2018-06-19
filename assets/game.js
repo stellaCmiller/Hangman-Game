@@ -1,16 +1,33 @@
 
 //Game related variables-----------------------------------------------------------------------------
 var alphabet = "abcdefghijklmnopqrstuvwxyz";
-var wordBank = ["succulent", "prickly pear", "dehydration", "oasis", "rattlesnake", "mirage", "pyramid", "outlaw", "gallows", "tumbleweeds", "sand dunes", "camel", "tarantula"]
+var wordBankEasy = ["biome", "sand", "oasis", "mirage", "camel", "pyramid", "barren","outlaw", "bandit", "gallows"];
+var wordBankHard = ["saguaro cactus", "desertification", "evapotranspiration", "dehydration", "prickly pear cactus"];
+var wordBankMedium = ["desert iguana", "sandstorm", "tumbleweeds", "sand dunes", "rattlesnake", "sahara", "succulent", "tarantula", "erosion" ];
 var secretWordCharArray = [];
 var guessedLetters = [];
 var numGuesses = 5
 var winCounter = 0;
 var loseCounter = 0;
 
-var secretWord = randomWord(wordBank);
+var secretWord = randomWord(wordBankMedium);
 createGameSpace(secretWord);
 console.log(secretWord);//test function, remove later
+
+
+//Resets the game with a word from the corresponding word bank
+function changeDifficultyEasy(){
+    console.log("pressed");//test function, remove later
+    reset(wordBankEasy);
+}
+function changeDifficultyMedium(){
+    console.log("pressed");//test function, remove later
+    reset(wordBankMedium);
+}
+function changeDifficultyHard(){
+    console.log("pressed");//test function, remove later
+    reset(wordBankHard);
+}
 
 
 //Registers only alphabetical guesses
@@ -26,13 +43,13 @@ document.onkeyup = function (event) {
     }
 
 //Resets all variables to their initial values to play the game again
-function reset(){
+function reset(wordbank = wordBankMedium){
     numGuesses = 5;
     guessedLetters = [];
     secretWordCharArray = [];
     document.getElementById("gameSpace").textContent = "";
     document.getElementById("guessedLetters").textContent = "";
-    secretWord = randomWord(wordBank);
+    secretWord = randomWord(wordbank);
     createGameSpace(secretWord);  
     console.log(secretWord);//test function, remove later
 }
@@ -66,7 +83,7 @@ function checkGuess(guess) {
         guessedLetters.push(guess);
         document.getElementById("guessedLetters").textContent += guess;
     } else {
-        alert("lol you suck");
+        alert("Sorry, you suck");
         numGuesses--;
         document.getElementById("lives").textContent = numGuesses;
         guessedLetters.push(guess);

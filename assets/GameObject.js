@@ -1,6 +1,6 @@
 
 //Writing the game as an object
-gaem = {
+HangmanGame = {
     lives: 5,
     wordBank: ["succulent", "prickly pear", "dehydration", "oasis", "rattlesnake", "mirage", "pyramid", "outlaw", "gallows", "tumbleweeds", "sand dunes", "camel", "tarantula"],
     alphabet: "abcdefghijklmnopqrstuvwxyz",
@@ -9,12 +9,15 @@ gaem = {
     secretWordCharArray: [],
     winCounter: 0,
     loseCounter: 0,
-    getRandomWord: function randomWord(bank) {
-        randomIndex = Math.floor(Math.random() * Math.floor(bank.length));
-        return bank[randomIndex];
+    getRandomWord: function randomWord(wordBank) {
+        randomIndex = Math.floor(Math.random() * Math.floor(wordBank.length));
+        return wordBank[randomIndex];
     }
-
 }
 
-MyGame = new gaem;
+game1 = new HangmanGame;
+
+console.log(game1.getRandomWord());
+
+
 
