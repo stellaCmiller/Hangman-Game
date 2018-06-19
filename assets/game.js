@@ -13,12 +13,8 @@ createGameSpace(secretWord);
 console.log(secretWord);//test function, remove later
 
 
-function reset(){
-
-}
-
+//Registers only alphabetical guesses
 document.onkeyup = function (event) {
-    if (numGuesses > 0) {
         var userGuess = event.key;
 
         if (alphabet.includes(userGuess)) {
@@ -28,8 +24,18 @@ document.onkeyup = function (event) {
             alert("That is not a letter!")
         }
     }
-}
 
+//Resets all variables to their initial values to play the game again
+function reset(){
+    numGuesses = 5;
+    guessedLetters = [];
+    secretWordCharArray = [];
+    document.getElementById("gameSpace").textContent = "";
+    document.getElementById("guessedLetters").textContent = "";
+    secretWord = randomWord(wordBank);
+    createGameSpace(secretWord);  
+    console.log(secretWord);//test function, remove later
+}
 
 //Returns a random word from the wordbank array passed into it
 function randomWord(bank) {
@@ -86,12 +92,12 @@ function replaceUnderscores(character) {
 /*After each guess, this functions checks if the player has won or lost and performs actions accordingly */
 function checkWinCondition() {
     if (numGuesses == 0) {
-        alert("You Lost!");
+        setTimeout(function () { alert("You lost! Better luck next time") }, 300);//Delays alert Box
         loseCounter++;
         document.getElementById("losses").textContent = loseCounter;
         reset();
     } else if (!secretWordCharArray.includes("_")) {
-        setTimeout(function () { alert("Congrats, you win!!") }, 300);//Makes sure the alert appears after the visual changes
+        setTimeout(function () { alert("Congrats, you win!!") }, 300); //Delays alert dialog box
         winCounter++;
         document.getElementById("wins").textContent = winCounter;
         reset();
