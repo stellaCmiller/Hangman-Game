@@ -9,15 +9,13 @@ HangmanGame = {
     secretWordCharArray: [],
     winCounter: 0,
     loseCounter: 0,
-    getRandomWord: function randomWord(wordBank) {
+    getRandomWord: function randomWord() {
         randomIndex = Math.floor(Math.random() * Math.floor(wordBank.length));
-        return wordBank[randomIndex];
+        this.secretWord = wordBank[randomIndex];
     }
 }
 
-game1 = new HangmanGame;
-
-console.log(game1.getRandomWord());
+console.log(HangmanGame.getRandomWord());
 
 
 

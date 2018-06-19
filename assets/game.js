@@ -4,6 +4,7 @@ var alphabet = "abcdefghijklmnopqrstuvwxyz";
 var wordBankEasy = ["biome", "sand", "oasis", "mirage", "camel", "pyramid", "barren","outlaw", "bandit", "gallows"];
 var wordBankHard = ["saguaro cactus", "desertification", "evapotranspiration", "dehydration", "prickly pear cactus"];
 var wordBankMedium = ["desert iguana", "sandstorm", "tumbleweeds", "sand dunes", "rattlesnake", "sahara", "succulent", "tarantula", "erosion" ];
+var difficulty = "Medium";
 var secretWordCharArray = [];
 var guessedLetters = [];
 var numGuesses = 5
@@ -17,16 +18,19 @@ console.log(secretWord);//test function, remove later
 
 //Resets the game with a word from the corresponding word bank
 function changeDifficultyEasy(){
-    console.log("pressed");//test function, remove later
-    reset(wordBankEasy);
+    difficulty = "Easy";
+    document.getElementById("difficulty").textContent = "Easy";
+    reset(difficulty);
 }
 function changeDifficultyMedium(){
-    console.log("pressed");//test function, remove later
-    reset(wordBankMedium);
+    difficulty = "Medium";
+    document.getElementById("difficulty").textContent = "Medium";
+    reset(difficulty);
 }
 function changeDifficultyHard(){
-    console.log("pressed");//test function, remove later
-    reset(wordBankHard);
+    difficulty = "Hard";
+    document.getElementById("difficulty").textContent = "Hard";
+    reset(difficulty);
 }
 
 
@@ -42,14 +46,20 @@ document.onkeyup = function (event) {
         }
     }
 
-//Resets all variables to their initial values to play the game again
-function reset(wordbank = wordBankMedium){
+//Resets all variables to their initial values to play the game again, with the medium difficulty set to default
+function reset(difficulty = "Medium"){
     numGuesses = 5;
     guessedLetters = [];
     secretWordCharArray = [];
     document.getElementById("gameSpace").textContent = "";
     document.getElementById("guessedLetters").textContent = "";
-    secretWord = randomWord(wordbank);
+    if (difficulty == "Easy"){
+        secretWord = randomWord(wordBankEasy);
+    } else if (difficulty == "Medium"){
+        secretWord = randomWord(wordBankMedium);
+    } else {
+        secretWord = randomWord(wordBankHard);
+    }
     createGameSpace(secretWord);  
     console.log(secretWord);//test function, remove later
 }
@@ -74,7 +84,7 @@ function createGameSpace(secretWord) {
     }
 }
 
-/*Checks whether the user has already guessed a letter, and if they have, checks whether the secret word contains the key pressed by the user and either reveals it on the page or decreases the number of lives accordingly, adding the character to the list of guesses already attempted.*/
+/*Checks whether the user has already guessed a letter, and if they have, checks whether the secret word contains the key pressed by the user and either reveals it on the page or decreases the number of lives accordingly, adding the character to the array of guesses already attempted.*/
 function checkGuess(guess) {
     if (guessedLetters.includes(guess)) {
         alert("You have already guessed that letter");
@@ -112,12 +122,12 @@ function checkWinCondition() {
         setTimeout(function () { alert("You lost! Better luck next time") }, 300);//Delays alert Box
         loseCounter++;
         document.getElementById("losses").textContent = loseCounter;
-        reset();
+        reset(difficulty);
     } else if (!secretWordCharArray.includes("_")) {
         setTimeout(function () { alert("Congrats, you win!!") }, 300); //Delays alert dialog box
         winCounter++;
         document.getElementById("wins").textContent = winCounter;
-        reset();
+        reset(difficulty);
     }
 }
 
