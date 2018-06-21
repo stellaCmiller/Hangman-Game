@@ -7,11 +7,11 @@ var wordBankMedium = ["desert iguana", "sandstorm", "tumbleweeds", "sand dunes",
 var difficulty = "Medium";
 var secretWordCharArray = [];
 var guessedLetters = [];
-var numGuesses = 5
+var numGuesses = 9;
 var winCounter = 0;
 var loseCounter = 0;
-
 var secretWord = randomWord(wordBankMedium);
+
 createGameSpace(secretWord);
 console.log(secretWord);//test function, remove later
 
@@ -48,7 +48,7 @@ document.onkeyup = function (event) {
 
 //Resets all variables to their initial values to play the game again, with the medium difficulty set to default
 function reset(difficulty = "Medium"){
-    numGuesses = 5;
+    numGuesses = 9;
     guessedLetters = [];
     secretWordCharArray = [];
     document.getElementById("gameSpace").textContent = "";
@@ -60,6 +60,7 @@ function reset(difficulty = "Medium"){
     } else {
         secretWord = randomWord(wordBankHard);
     }
+    document.getElementById("lives").textContent = numGuesses;
     createGameSpace(secretWord);  
     console.log(secretWord);//test function, remove later
 }
