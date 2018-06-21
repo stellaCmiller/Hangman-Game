@@ -13,7 +13,6 @@ var loseCounter = 0;
 var secretWord = randomWord(wordBankMedium);
 
 createGameSpace(secretWord);
-console.log(secretWord);//test function, remove later
 
 
 //Resets the game with a word from the corresponding word bank
@@ -62,7 +61,6 @@ function reset(difficulty = "Medium"){
     }
     document.getElementById("lives").textContent = numGuesses;
     createGameSpace(secretWord);  
-    console.log(secretWord);//test function, remove later
 }
 
 //Returns a random word from the wordbank array passed into it
